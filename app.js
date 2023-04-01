@@ -10,21 +10,16 @@ const rock_div = document.getElementById('rock');
 const paper_div = document.getElementById('paper');
 const scissors_div = document.getElementById('scissors');
 
-const contractAddress = "0xc0115B362F81753A0e2F2cBd68f8219FbDA79713";
+
+const contractAddress = "0x113E1CEDe0E379b05209a22f8ecE6AF6b545f4F0";
+
+
+
 const contractABI = [
 	{
 		"inputs": [],
-		"name": "deposit",
-		"outputs": [],
 		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "fundContract",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
+		"type": "constructor"
 	},
 	{
 		"anonymous": false,
@@ -34,12 +29,6 @@ const contractABI = [
 				"internalType": "address",
 				"name": "player",
 				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
 			},
 			{
 				"indexed": false,
@@ -69,42 +58,18 @@ const contractABI = [
 				"internalType": "uint256",
 				"name": "_playerOneChoice",
 				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_gameStake",
-				"type": "uint256"
 			}
 		],
 		"name": "playGame",
 		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "gameOutcome",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"stateMutability": "nonpayable",
+		"stateMutability": "payable",
 		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "Received",
-		"type": "event"
 	},
 	{
 		"inputs": [],
@@ -114,32 +79,17 @@ const contractABI = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getContractBalance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "contractBalance",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
+		"stateMutability": "payable",
+		"type": "receive"
 	},
 	{
-		"inputs": [
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
 			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"name": "playerBalances",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -159,8 +109,6 @@ const contractABI = [
 		"type": "function"
 	}
 ]
-
-
 
 
 const provider = new ethers.providers.Web3Provider(window.ethereum, 97)//ChainID 97 BNBtestnet
@@ -184,6 +132,7 @@ provider.send("eth_requestAccounts", []).then(()=>{
     )
 }
 )
+
 
 
 // similar to convertcase but just takes lowercase and replaces with titlecase
@@ -302,7 +251,20 @@ function game(userChoice, computerChoice) {
       break;
   }
 }
+// ES5 style of writing this function
+// function main() {
+//   rock_div.addEventListener('click', function() {
+//     game('rock');
+//   });
 
+//   paper_div.addEventListener('click', function() {
+//     game('paper');
+//   });
+
+//   scissors_div.addEventListener('click', function() {
+//     game('scissors');
+//   });
+// }
 
 // ES6 style of writing this function
 // This function creates and adds an eventlistener to the rock, paper scissors html element and the passes the value of that element to the game function
