@@ -10,7 +10,7 @@ const rock_div = document.getElementById('rock');
 const paper_div = document.getElementById('paper');
 const scissors_div = document.getElementById('scissors');
 
-const contractAddress = "0xc7e1310cf96f520f1e9f381432d374ff4dec71fc";
+const contractAddress = "0xc0115B362F81753A0e2F2cBd68f8219FbDA79713";
 const contractABI = [
 	{
 		"inputs": [],
@@ -302,20 +302,7 @@ function game(userChoice, computerChoice) {
       break;
   }
 }
-// ES5 style of writing this function
-// function main() {
-//   rock_div.addEventListener('click', function() {
-//     game('rock');
-//   });
 
-//   paper_div.addEventListener('click', function() {
-//     game('paper');
-//   });
-
-//   scissors_div.addEventListener('click', function() {
-//     game('scissors');
-//   });
-// }
 
 // ES6 style of writing this function
 // This function creates and adds an eventlistener to the rock, paper scissors html element and the passes the value of that element to the game function
